@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { getContacts, getFilter } from 'redux/selectors';
 
 const getFilteredContacts = (contacts, filter) => {
+  console.log(contacts);
   return contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );

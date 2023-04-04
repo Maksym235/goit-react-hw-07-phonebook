@@ -4,7 +4,7 @@ import { FormStyled, Input, Label, Button } from './FormToAddContact.styled';
 
 // -------REDUX-----------------
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import { getContacts } from 'redux/selectors';
 export function Form() {
   const [name, setName] = useState('');

@@ -1,11 +1,32 @@
-import { Conteiner, Title, ContactsTitle } from './appConteiner.styled';
-import { BsFillTelephonePlusFill } from 'react-icons/bs';
-import { IoMdContact } from 'react-icons/io';
+//--------------REACT--------------
+import { useEffect } from 'react';
+
+//--------------REDUX--------------
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from 'redux/operations';
+import { getIsLoading, getError } from 'redux/selectors';
+
+//--------------COMPONENTS---------
 import { Form } from 'components/FormToAddContact/FormToAddContact';
 import { Input } from '../FindInput/FindInput';
 import { ContactList } from '../ContactsList/ContactsList';
 
+//--------------ICONS-------------
+import { BsFillTelephonePlusFill } from 'react-icons/bs';
+import { IoMdContact } from 'react-icons/io';
+
+//--------------STYLES------------
+import { Conteiner, Title, ContactsTitle } from './appConteiner.styled';
+
 export function App() {
+  const isLoading = useSelector(getIsLoading);
+  const isError = useSelector(getError);
+  const dispach = useDispatch();
+
+  useEffect(() => {
+    dispach(fetchContacts());
+  }, [dispach]);
+
   return (
     <Conteiner>
       <Title>
@@ -17,6 +38,7 @@ export function App() {
         Contacts <IoMdContact />
       </ContactsTitle>
       <Input />
+      {isLoading && !isError && <b>Loading contacts...</b>}
       <ContactList />
     </Conteiner>
   );
