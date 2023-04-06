@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 //--------------REDUX--------------
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/operations';
-import { getIsLoading, getError } from 'redux/selectors';
+import { selectIsLoading, selectError } from 'redux/selectors';
 
 //--------------COMPONENTS---------
 import { Form } from 'components/FormToAddContact/FormToAddContact';
@@ -19,8 +19,8 @@ import { IoMdContact } from 'react-icons/io';
 import { Conteiner, Title, ContactsTitle } from './appConteiner.styled';
 
 export function App() {
-  const isLoading = useSelector(getIsLoading);
-  const isError = useSelector(getError);
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectError);
   const dispach = useDispatch();
 
   useEffect(() => {

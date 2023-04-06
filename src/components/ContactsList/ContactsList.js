@@ -3,22 +3,13 @@ import { List } from './ContactList.styled';
 
 //-----------REDUX---------------
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { getContacts, getFilter } from 'redux/selectors';
-
-const getFilteredContacts = (contacts, filter) => {
-  console.log(contacts);
-  return contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-};
+import { selectFilteredContacts } from 'redux/selectors';
 
 export function ContactList() {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
-  const filtredContacts = getFilteredContacts(contacts, filter);
+  const contacts = useSelector(selectFilteredContacts);
   return (
     <List>
-      {filtredContacts.map(contact => {
+      {contacts.map(contact => {
         return <Contact key={contact.id} contact={contact} />;
       })}
     </List>
